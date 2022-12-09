@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System.Reflection;
 public class test4 : MonoBehaviour, ISelectable, IInteractable
 {
+    [SerializeField] public GameObject player;
     [SerializeField] private Canvas canvas;
     [SerializeField] private bool selectable = true;
     [SerializeField] private bool observable = false;
