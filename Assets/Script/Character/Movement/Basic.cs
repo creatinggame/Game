@@ -28,8 +28,12 @@ public class Basic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        updateMove();
-        updateSelect();
+        //避免暂停之后角度和方向继续更新，造成结束暂停时突然旋转的情况
+        if(Time.timeScale != 0){
+            //如果没有暂停，才更新运动和角度信息
+            updateMove();
+            updateSelect();
+        }
     }
     void updateSelect(){
         selectObject = CheckRaycast();

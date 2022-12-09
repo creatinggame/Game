@@ -43,7 +43,7 @@ public interface IObservable
     //动作结束的时候，别忘了更新player的状态：player.GetComponent<Basic>().state = "ending";
     //不然，动作只会触发一次，之后没有办法再次触发
     void IObservingAction(GameObject player,GameObject gameObject){
-        Debug.Log("按钮按下了一次");
+        Debug.Log("观察了一次");
         player.GetComponent<Basic>().state = "ending";
     }
 }
