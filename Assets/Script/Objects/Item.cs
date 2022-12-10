@@ -71,4 +71,29 @@ public class Item : MonoBehaviour, ISelectable
     public void updateClass(){
         SelectInterface.IUpdateSelect(obj,mainCam);
     }
+
+    //为什么下面两个函数不写成接口的形式呢？因为接口是player调用的，
+    //没办法获取到observable和interactable这两个变量
+    //如果需要重写观察接口的“IObservingAction”，需要先调用这个函数进行初始化
+    //如果初始化成功返回true，初始化失败返回false
+    public bool initialObservingAction(GameObject player,GameObject gameObject){
+        if(!observable){
+            player.GetComponent<Basic>().state = "observeEnding";
+            return false;
+        }
+        player.GetComponent<Basic>().state = "observeEnding";
+        return true;
+    }
+
+    //如果需要重写观察接口的“IInteractingAction”，需要先调用这个函数进行初始化
+    //如果初始化成功返回true，初始化失败返回false
+    public bool initialInteractingAction(GameObject player,GameObject gameObject){
+        if(!interactable){
+            player.GetComponent<Basic>().state = "interactEnding";
+            return false;
+        }
+        player.GetComponent<Basic>().state = "interactEnding";
+        return true;
+    }
+
 }

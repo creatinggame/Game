@@ -94,7 +94,7 @@ public class Basic : MonoBehaviour
         // 查找在圆形区域内的所有物体
         Collider[] colliders = Physics.OverlapSphere(center, radius, 1);
         // 扇形的中心角度，表示扇形的宽度
-        float angle = 60;
+        float angle = 90;
         // 扇形的方向
         Vector3 direction = transform.forward;
         // 用来存储符合条件的物体
