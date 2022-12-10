@@ -26,8 +26,8 @@ public interface IInteractable
     }
     //互动结束
     void IInteractEnd(GameObject player,GameObject gameObject){
-        if (player.GetComponent<Basic>().state == "ending"){
-                player.GetComponent<Basic>().state="free";
+        if (player.GetComponent<Basic>().state == "interactEnding"){
+            player.GetComponent<Basic>().state="free";
         }
     } 
 
@@ -43,6 +43,6 @@ public interface IInteractable
     //不然，动作只会触发一次，之后没有办法再次触发
     void IInteractingAction(GameObject player,GameObject gameObject){
         Debug.Log("互动了一次");
-        player.GetComponent<Basic>().state = "ending";
+        player.GetComponent<Basic>().state = "interactEnding";
     }
 }

@@ -27,7 +27,7 @@ public interface IObservable
     }
     //观察结束
     void IObserveEnd(GameObject player,GameObject gameObject){
-        if (player.GetComponent<Basic>().state == "ending"){
+        if (player.GetComponent<Basic>().state == "observeEnding"){
                 player.GetComponent<Basic>().state="free";
         }
     } 
@@ -44,6 +44,6 @@ public interface IObservable
     //不然，动作只会触发一次，之后没有办法再次触发
     void IObservingAction(GameObject player,GameObject gameObject){
         Debug.Log("观察了一次");
-        player.GetComponent<Basic>().state = "ending";
+        player.GetComponent<Basic>().state = "observeEnding";
     }
 }

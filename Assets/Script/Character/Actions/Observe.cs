@@ -16,6 +16,9 @@ public class Observe : MonoBehaviour
     void updateMain(){
     }
     void updateObserve(){
+        if(Time.timeScale == 0){
+            return;
+        }
         //没有任何选择的物体时，直接返回
         if (basic.selectObject==null){
             return;

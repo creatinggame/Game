@@ -16,11 +16,14 @@ public class Interact : MonoBehaviour
     void updateMain(){
     }
     void updateInteract(){
+        if(Time.timeScale == 0){
+            return;
+        }
         //没有任何选择的物体时，直接返回
         if (basic.selectObject==null){
             return;
         }        
-        //如果选择的物体不可hu
+        //如果选择的物体不可互动
         InteractdInterface = basic.selectObject.GetComponent<IInteractable>();
         if (InteractdInterface==null){
             return;
