@@ -61,7 +61,7 @@ public class test4 : MonoBehaviour, ISelectable, IInteractable
         SelectInterface.IDisSelecteActive(obj);
     }
 
-        //重写互动接口行为
+    //重写互动接口行为
     public void IInteractingAction(GameObject player,GameObject gameObject){
         //临时传送方案
         Vector3 tempPosition = gameObject.transform.position;

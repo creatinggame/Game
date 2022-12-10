@@ -652,11 +652,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!223 &568494895 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 22325660, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
-  m_PrefabInstance: {fileID: 1861759899}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1218,7 +1213,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1443368503}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 100, y: 0, z: 0}
+  m_LocalPosition: {x: 1000, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 1, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1466,7 +1461,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ba576f127c4e574b81611b1725517a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 568494895}
+  player: {fileID: 1077189469}
+  canvas: {fileID: 6915055166206847461, guid: de805f196d146ec44bf27146c7140f0d, type: 3}
   selectable: 1
   observable: 0
   interactable: 1
@@ -2102,7 +2098,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2369618089560790983, guid: e2e9bf8ad29873941b9645e8329beb1b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 100
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 2369618089560790983, guid: e2e9bf8ad29873941b9645e8329beb1b, type: 3}
       propertyPath: m_LocalPosition.y
