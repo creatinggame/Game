@@ -12,7 +12,7 @@ public class Item : MonoBehaviour, ISelectable
     [SerializeField] public bool observable;
     [SerializeField] public bool interactable;
     [SerializeField] public float intervalRange = 3f;
-    [SerializeField] public float canvasHight = 5f;
+    [SerializeField] public float canvasHight = 2f;
     public Outline outlineComponent;
     public Camera mainCam;
     public ISelectable SelectInterface; 
@@ -54,6 +54,7 @@ public class Item : MonoBehaviour, ISelectable
         canvas, intervalRange, canvasHight, outlineComponent);
     }
     
+    //选择和取消选择接口，由player调用
     public void ISelecte(){
         SelectInterface.ISelectedActive(obj);
     }
@@ -61,6 +62,7 @@ public class Item : MonoBehaviour, ISelectable
         SelectInterface.IDisSelecteActive(obj);
     }
 
+    //初始化和更新class的通用函数，由gameObject调用
     public void initialClass(){
         initialMain();
         buildObjInfo();

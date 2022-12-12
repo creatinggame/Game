@@ -53,6 +53,15 @@ public partial class @InputController : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pick"",
+                    ""type"": ""Button"",
+                    ""id"": ""c413e9cc-d60a-4873-a72f-a4e8ca7b58ed"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -124,23 +133,23 @@ public partial class @InputController : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""804200d8-5f85-4790-9b47-748cee8ac35e"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Observe"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""a99d16dc-f98e-4ed8-878a-b073e742dbf5"",
                     ""path"": ""<Keyboard>/#(E)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""54476aab-aa9a-430e-a40e-0b4b5d4b056e"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -154,6 +163,7 @@ public partial class @InputController : IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Observe = m_Player.FindAction("Observe", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_Pick = m_Player.FindAction("Pick", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -216,6 +226,7 @@ public partial class @InputController : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Observe;
     private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_Pick;
     public struct PlayerActions
     {
         private @InputController m_Wrapper;
@@ -223,6 +234,7 @@ public partial class @InputController : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Observe => m_Wrapper.m_Player_Observe;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        public InputAction @Pick => m_Wrapper.m_Player_Pick;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -241,6 +253,9 @@ public partial class @InputController : IInputActionCollection2, IDisposable
                 @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @Pick.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPick;
+                @Pick.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPick;
+                @Pick.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPick;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -254,6 +269,9 @@ public partial class @InputController : IInputActionCollection2, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @Pick.started += instance.OnPick;
+                @Pick.performed += instance.OnPick;
+                @Pick.canceled += instance.OnPick;
             }
         }
     }
@@ -263,5 +281,6 @@ public partial class @InputController : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnObserve(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnPick(InputAction.CallbackContext context);
     }
 }

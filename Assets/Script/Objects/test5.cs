@@ -18,7 +18,7 @@ public class test5: Item, IObservable, IInteractable
 
     //重写互动接口行为
     public void IInteractingAction(GameObject player,GameObject gameObject){
-        //初始化失败(比如物体被设为互动)
+        //初始化失败(比如物体被设为不可互动)
         if(!initialInteractingAction(player, gameObject)){
             return;
         }
