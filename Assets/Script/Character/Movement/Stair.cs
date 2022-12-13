@@ -8,7 +8,7 @@ public class Stair : MonoBehaviour
     [SerializeField] GameObject stepRayUpper;
     [SerializeField] GameObject stepRayLower;
     [SerializeField] float stepHeight = 2f;
-    [SerializeField] float stepSmooth = 50;
+    [SerializeField] float stepSmooth = 15f;
 
     private void Awake()
     {
