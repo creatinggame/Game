@@ -36,14 +36,18 @@ public class Basic : MonoBehaviour
         }
     }
     void updateSelect(){
-        selectObject = CheckRaycast();
+        GameObject newselectObject = CheckRaycast();
+        //如果观察到的物体没有selected的属性，视作没有观察到物体
+        if (newselectObject!=null){
+            if (newselectObject.GetComponent<ISelectable>()==null){
+            newselectObject=null;
+        }
+        }
+        //接下来处理观察到的物体
+        selectObject = newselectObject;
         if (selectObject != null)
         {
             ISelectable newselectedInterface = selectObject.GetComponent<ISelectable>();
-            //如果观察到的物体没有selected的属性，返回
-            if (newselectedInterface==null){
-                return;
-            }
             // 如果观察到了新的物体
             if (newselectedInterface!=selectedInterface){
                 //取消原来物体的选中并选中新的物体
