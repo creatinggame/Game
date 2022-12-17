@@ -14,6 +14,7 @@ public class Item : MonoBehaviour, ISelectable
     [SerializeField] public bool selectable;
     [SerializeField] public bool observable;
     [SerializeField] public bool interactable;
+    [SerializeField] public bool pickable = false;
     [SerializeField] public float intervalRange = 3f;
     [SerializeField] public float canvasHight = 2f;
     public Outline outlineComponent;
@@ -35,6 +36,10 @@ public class Item : MonoBehaviour, ISelectable
         outlineComponent = gameObject.GetComponent<Outline>();
         //在最开始的时候关掉高光
         outlineComponent.OutlineWidth = 0f;
+        //如果没有自定interact方法的名字，设立一个初始化的名字
+        if(interactName==""){
+            interactName = "Interact\nPress E";
+        }
     }
     //初始化接口
     public void initialInterafce(){

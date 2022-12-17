@@ -2188,6 +2188,7 @@ MonoBehaviour:
   selectable: 1
   observable: 0
   interactable: 1
+  pickable: 0
   intervalRange: 3
   canvasHight: 2
   outlineComponent: {fileID: 0}
@@ -2731,6 +2732,7 @@ MonoBehaviour:
   selectable: 1
   observable: 0
   interactable: 1
+  pickable: 0
   intervalRange: 3
   canvasHight: 2
   outlineComponent: {fileID: 0}
@@ -2870,6 +2872,7 @@ MonoBehaviour:
   selectable: 1
   observable: 1
   interactable: 0
+  pickable: 0
   intervalRange: 3
   canvasHight: 2
   outlineComponent: {fileID: 0}
@@ -3435,6 +3438,7 @@ MonoBehaviour:
   selectable: 1
   observable: 1
   interactable: 1
+  pickable: 0
   intervalRange: 3
   canvasHight: 2
   outlineComponent: {fileID: 0}
