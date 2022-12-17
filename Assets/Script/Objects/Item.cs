@@ -8,6 +8,9 @@ public class Item : MonoBehaviour, ISelectable
 {
     //所有函数的信息可以在objectInfo类中找到，这里就不重复了
     [SerializeField] public Canvas canvas;
+    [SerializeField] public string itemName;
+    [SerializeField] public string interactName;
+
     [SerializeField] public bool selectable;
     [SerializeField] public bool observable;
     [SerializeField] public bool interactable;
@@ -50,7 +53,7 @@ public class Item : MonoBehaviour, ISelectable
     }
     //将函数的信息封装入objctInfo class,方便调用
     public void buildObjInfo(){
-        obj = new objectInfo(gameObject, selectable, observable, interactable,
+        obj = new objectInfo(gameObject, itemName, interactName, selectable, observable, interactable,
         canvas, intervalRange, canvasHight, outlineComponent);
     }
     

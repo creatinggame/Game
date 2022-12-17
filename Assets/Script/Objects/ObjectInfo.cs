@@ -8,6 +8,9 @@ public class objectInfo
 {
     //物体的transform信息
     public GameObject gameObj;
+    //物体的名字以及互动方式的名字
+    public string itemName;
+    public string interactName;
     //是否可以被选择，被观测和被互动
     public bool selectable;
     public bool observable;
@@ -21,16 +24,19 @@ public class objectInfo
     //用来给物体加高光的组件信息
     public Outline outlineComponent;
     //构造函数:按照上面定义的顺序传入
-    public objectInfo(GameObject go,bool s,bool o,bool i,Canvas c, float ir, float ch, Outline oc)
+    public objectInfo(GameObject igameObj,string iitemName, string iinteractName,
+    bool iselectable,bool iobservable,bool iinteractable,Canvas icanvas, 
+    float iintervalRange, float icanvasHight, Outline ioutlineComponent)
     {
-        gameObj = go;
-        selectable = s;
-        observable = o;
-        interactable = i;
-        canvas = c;
-        intervalRange = ir;
-        canvasHight = ch;
-        outlineComponent = oc;
-
+        gameObj = igameObj;
+        itemName = iitemName;
+        interactName = iinteractName;
+        selectable = iselectable;
+        observable = iobservable;
+        interactable = iinteractable;
+        canvas = icanvas;
+        intervalRange = iintervalRange;
+        canvasHight = icanvasHight;
+        outlineComponent = ioutlineComponent;
     }
 }

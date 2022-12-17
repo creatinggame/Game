@@ -36,6 +36,7 @@ public class test1 : Item, ISelectable, IObservable, IInteractable
         gameObject.GetComponent<MeshRenderer>().sharedMaterial.color = Color.blue;
     }
     void Awake(){
+        interactName = "Travel\nPress E";
         initialClass();
     }
 
