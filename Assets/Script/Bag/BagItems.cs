@@ -14,6 +14,7 @@ public class BagItems:MonoBehaviour
     public Image nextItem;
     public TextMeshProUGUI selectedItemName;
     public InputController input;
+    private int originalListLen = 0;
     [SerializeField] public GameObject player;
     //用来控制切换物品
     private bool isSwitching = false;
@@ -30,17 +31,39 @@ public class BagItems:MonoBehaviour
     //结果就是，如果玩家非常密集地按下并松开按钮，按钮会切换地越来越快越来越快
     //所以我们需要pressedNumber这个int值，来统计玩家提前松开了几次；并将之后的计时器无效相同次数
     private int pressedNumber = 0;
+    //输入目标位置和偏移量，分别返回当前列表中前偏移量个物体和后偏移量个物体的index
+    int moveForward(int holdItemIndex,int offSet){
+        return (items.Count+holdItemIndex-offSet%items.Count)%items.Count;
+    }
+    int moveNext(int holdItemIndex,int offSet){
+        return (holdItemIndex+offSet)%items.Count;
+    }
     void setImages(){
         if(items[holdItemIndex]!=null){
             //设置当前选中的物体以及它的名称
             selectedItem.sprite = items[holdItemIndex].GetComponent<Image>().sprite;
             selectedItemName.SetText(items[holdItemIndex].GetComponent<Item>().itemName);
             //设置前一个物体以及后一个物体--magic!
-            frontItem.sprite = items[(holdItemIndex+items.Count-1)%items.Count].GetComponent<Image>().sprite;
-            nextItem.sprite = items[(holdItemIndex+1)%items.Count].GetComponent<Image>().sprite;
+            frontItem.sprite = items[moveForward(holdItemIndex,1)].GetComponent<Image>().sprite;
+            nextItem.sprite = items[moveNext(holdItemIndex,1)].GetComponent<Image>().sprite;
         }
     }
+    //当list变化时自动更新选取的内容
+    void updateChangedItem(){
+        if(items.Count!=originalListLen){
+            int offSet = items.Count-originalListLen;
+            originalListLen = items.Count;
+            if (offSet<0){
+                holdItemIndex = moveForward(holdItemIndex,-offSet);
+            }
+            if (offSet>0){
+                holdItemIndex = moveNext(holdItemIndex,offSet);
+            }
+        }
+    }
+    //当手动输入时更新选取的内容
     void updateChoosedItem(){
+        updateChangedItem();
         float inputChoose = input.Player.ChooseItem.ReadValue<float>();
         //如果正在切换中则退出
         if (isSwitching){
@@ -58,30 +81,20 @@ public class BagItems:MonoBehaviour
             //计时器，这段时间内不会被重复触发
             StartCoroutine(switchTimer());
             if(inputChoose<0){
-                holdItemIndex = (holdItemIndex+items.Count-1)%items.Count;
+                holdItemIndex = moveForward(holdItemIndex,1);
             }
             else if(inputChoose>0){
-                holdItemIndex = (holdItemIndex+1)%items.Count;
+                holdItemIndex = moveNext(holdItemIndex,1);
             }
             //如果玩家持续按下按钮，转换的速度会加快
-            if(switchingTime>=0.3f){
-                switchingTime*=0.6f;
+            if(switchingTime>=0.2f){
+                switchingTime*=0.65f;
             }
         }
         else{
             switchingTime = 0.8f;
         }
     }
-    void Awake(){
-        input = player.GetComponent<Basic>().input;
-    }
-    void Update(){
-        if(items.Count!=0){
-            setImages();
-            updateChoosedItem();
-        }
-    }
-
     IEnumerator switchTimer(){
         //定时器
         yield return new WaitForSeconds(switchingTime);
@@ -94,4 +107,14 @@ public class BagItems:MonoBehaviour
             pressedNumber -= 1;
         }
     }
+    void Awake(){
+        input = player.GetComponent<Basic>().input;
+    }
+    void Update(){
+        if(items.Count!=0){
+            setImages();
+            updateChoosedItem();
+        }
+    }
+
 }
