@@ -122,6 +122,7 @@ public class BagItems:MonoBehaviour
             selectedItem.sprite = null;
             nextItem.sprite = null;
             frontItem.sprite = null;
+            selectedItemName.SetText("");
         }
     }
 
