@@ -39,6 +39,7 @@ public class BagItems:MonoBehaviour
         return (holdItemIndex+offSet)%items.Count;
     }
     void setImages(){
+        //Debug.Log(holdItemIndex);
         if(items[holdItemIndex]!=null){
             //设置当前选中的物体以及它的名称
             selectedItem.sprite = items[holdItemIndex].GetComponent<Image>().sprite;
@@ -53,11 +54,13 @@ public class BagItems:MonoBehaviour
         if(items.Count!=originalListLen){
             int offSet = items.Count-originalListLen;
             originalListLen = items.Count;
+            //移除物体时向前移动
             if (offSet<0){
-                holdItemIndex = moveForward(holdItemIndex,-offSet);
+                holdItemIndex = moveForward(holdItemIndex,Mathf.Abs(offSet));
             }
+            //添加物体时选择到刚添加的物体
             if (offSet>0){
-                holdItemIndex = moveNext(holdItemIndex,offSet);
+                holdItemIndex = items.Count-1;
             }
         }
     }
@@ -112,8 +115,13 @@ public class BagItems:MonoBehaviour
     }
     void Update(){
         if(items.Count!=0){
-            setImages();
             updateChoosedItem();
+            setImages();
+        }
+        else{
+            selectedItem.sprite = null;
+            nextItem.sprite = null;
+            frontItem.sprite = null;
         }
     }
 

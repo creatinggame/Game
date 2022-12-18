@@ -30,6 +30,14 @@ public interface IInteractable
         obj.gameObj.SetActive(false);
         
     }
+    //用于删除背包中的某个物品
+    void IRemove(objectInfo obj,int num){
+        //获取背包系统中的bagItems class; 其中包含变量items，是一个储存了gameObject的列表
+        BagItems bagItems = GameObject.Find("BagSystem").GetComponent<BagItems>();
+        //按序列将一个物体移除出背包
+        bagItems.items.RemoveAt(num);
+        
+    }
 
     //三种状态 free->observing->ending->free
     //互动开始
