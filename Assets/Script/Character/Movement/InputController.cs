@@ -55,9 +55,9 @@ public partial class @InputController : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Pick"",
+                    ""name"": ""ChooseItem"",
                     ""type"": ""Button"",
-                    ""id"": ""c413e9cc-d60a-4873-a72f-a4e8ca7b58ed"",
+                    ""id"": ""529f2d49-cdb4-4de4-b851-fa63794e29f2"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -143,15 +143,37 @@ public partial class @InputController : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""54476aab-aa9a-430e-a40e-0b4b5d4b056e"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""name"": ""1D Axis"",
+                    ""id"": ""4bdef9e7-a6f4-4bde-9847-2af2adbfb2d8"",
+                    ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Pick"",
-                    ""isComposite"": false,
+                    ""action"": ""ChooseItem"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Negative"",
+                    ""id"": ""2693554d-8bb6-4997-a297-980742f96a62"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChooseItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Positive"",
+                    ""id"": ""abdc9c5c-b91a-45bc-bf97-997049fc02a8"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChooseItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -163,7 +185,7 @@ public partial class @InputController : IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Observe = m_Player.FindAction("Observe", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
-        m_Player_Pick = m_Player.FindAction("Pick", throwIfNotFound: true);
+        m_Player_ChooseItem = m_Player.FindAction("ChooseItem", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -226,7 +248,7 @@ public partial class @InputController : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Observe;
     private readonly InputAction m_Player_Interact;
-    private readonly InputAction m_Player_Pick;
+    private readonly InputAction m_Player_ChooseItem;
     public struct PlayerActions
     {
         private @InputController m_Wrapper;
@@ -234,7 +256,7 @@ public partial class @InputController : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Observe => m_Wrapper.m_Player_Observe;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
-        public InputAction @Pick => m_Wrapper.m_Player_Pick;
+        public InputAction @ChooseItem => m_Wrapper.m_Player_ChooseItem;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -253,9 +275,9 @@ public partial class @InputController : IInputActionCollection2, IDisposable
                 @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
-                @Pick.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPick;
-                @Pick.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPick;
-                @Pick.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPick;
+                @ChooseItem.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChooseItem;
+                @ChooseItem.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChooseItem;
+                @ChooseItem.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChooseItem;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -269,9 +291,9 @@ public partial class @InputController : IInputActionCollection2, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
-                @Pick.started += instance.OnPick;
-                @Pick.performed += instance.OnPick;
-                @Pick.canceled += instance.OnPick;
+                @ChooseItem.started += instance.OnChooseItem;
+                @ChooseItem.performed += instance.OnChooseItem;
+                @ChooseItem.canceled += instance.OnChooseItem;
             }
         }
     }
@@ -281,6 +303,6 @@ public partial class @InputController : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnObserve(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
-        void OnPick(InputAction.CallbackContext context);
+        void OnChooseItem(InputAction.CallbackContext context);
     }
 }

@@ -19,6 +19,18 @@ public interface IInteractable
         //修改物体传送的方式名
         interactbutton.gameObject.GetComponentInChildren<TMP_Text>().text = obj.interactName;
     }
+
+    //用于被拾取时的动作
+    void IPick(objectInfo obj){
+        //获取背包系统中的bagItems class; 其中包含变量items，是一个储存了gameObject的列表
+        BagItems bagItems = GameObject.Find("BagSystem").GetComponent<BagItems>();
+        //将被拾取的物体添加进列表
+        bagItems.items.Add(obj.gameObj);
+        //在地图上把物体设为不激活
+        obj.gameObj.SetActive(false);
+        
+    }
+
     //三种状态 free->observing->ending->free
     //互动开始
     void IInteractStart(GameObject player,GameObject gameObject){

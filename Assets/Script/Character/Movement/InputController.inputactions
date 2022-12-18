@@ -33,9 +33,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Pick",
+                    "name": "ChooseItem",
                     "type": "Button",
-                    "id": "c413e9cc-d60a-4873-a72f-a4e8ca7b58ed",
+                    "id": "529f2d49-cdb4-4de4-b851-fa63794e29f2",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -121,15 +121,37 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "54476aab-aa9a-430e-a40e-0b4b5d4b056e",
-                    "path": "<Keyboard>/space",
+                    "name": "1D Axis",
+                    "id": "4bdef9e7-a6f4-4bde-9847-2af2adbfb2d8",
+                    "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Pick",
-                    "isComposite": false,
+                    "action": "ChooseItem",
+                    "isComposite": true,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "Negative",
+                    "id": "2693554d-8bb6-4997-a297-980742f96a62",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChooseItem",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Positive",
+                    "id": "abdc9c5c-b91a-45bc-bf97-997049fc02a8",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChooseItem",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }

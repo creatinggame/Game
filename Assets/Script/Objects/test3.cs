@@ -11,7 +11,7 @@ public class test3 : Item, ISelectable, IInteractable
             return;
         }
         if(pickable){
-            gameObject.SetActive(false);
+            InteractInterface.IPick(obj);
         }
     }
     void Awake(){
