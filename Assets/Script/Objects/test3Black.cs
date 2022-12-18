@@ -16,7 +16,7 @@ public class test3Black : Item, ISelectable, IInteractable
         }
     }
     void Awake(){
-        interactName = "按E\n消除最后的物品";
+        interactName = "按E\n消除手上的物品";
         pickable = false;
         initialClass();
     }
