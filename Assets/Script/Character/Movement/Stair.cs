@@ -7,7 +7,7 @@ public class Stair : MonoBehaviour
     Rigidbody rigidBody;
     [SerializeField] GameObject stepRayUpper;
     [SerializeField] GameObject stepRayLower;
-    [SerializeField] float stepHeight = 2f;
+    [SerializeField] float stepHeight = 0.5f;
     [SerializeField] float stepSmooth = 15f;
 
     private void Awake()
@@ -17,7 +17,7 @@ public class Stair : MonoBehaviour
         stepRayUpper.transform.position = new Vector3(stepRayUpper.transform.position.x, stepHeight, stepRayUpper.transform.position.z);
     }
     
-    private void Update()
+    private void FixedUpdate()
     {
         stepClimb();
     }
@@ -30,6 +30,7 @@ public class Stair : MonoBehaviour
             RaycastHit hitUpper;
             if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(Vector3.forward), out hitUpper, 0.3f))
             {
+                Debug.Log("上台阶");
                 gameObject.transform.position -= new Vector3(0f, -stepSmooth * Time.deltaTime, 0f);
             }
         }
@@ -41,6 +42,7 @@ public class Stair : MonoBehaviour
             RaycastHit hitUpper45;
             if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(1.5f,0,1), out hitUpper45, 0.3f))
             {
+                Debug.Log("上台阶2");
                 gameObject.transform.position -= new Vector3(0f, -stepSmooth * Time.deltaTime, 0f);
             }
         }
@@ -52,6 +54,7 @@ public class Stair : MonoBehaviour
             RaycastHit hitUpperMinus45;
             if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(-1.5f,0,1), out hitUpperMinus45, 0.3f))
             {
+                Debug.Log("上台阶3");
                 gameObject.transform.position -= new Vector3(0f, -stepSmooth * Time.deltaTime, 0f);
             }
         }

@@ -114,6 +114,9 @@ public class BagItems:MonoBehaviour
         input = player.GetComponent<Basic>().input;
     }
     void Update(){
+        if(Time.timeScale==0){
+            return;
+        }
         if(items.Count!=0){
             updateChoosedItem();
             setImages();

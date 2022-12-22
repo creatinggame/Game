@@ -26,7 +26,7 @@ public class Basic : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //避免暂停之后角度和方向继续更新，造成结束暂停时突然旋转的情况
         if(Time.timeScale != 0){
